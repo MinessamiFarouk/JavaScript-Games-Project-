@@ -10,6 +10,14 @@ let displayMessage = (message) => {
   document.querySelector(".message").textContent = message;
 };
 
+let displayGlobalMessage = (message) => {
+  document.querySelector(".globalMessage").textContent = message;
+};
+
+let changeBackGround = (color) => {
+  document.querySelector("body").style.backgroundColor = color;
+};
+
 document.querySelector(".check").addEventListener("click", (e) => {
   e.preventDefault();
   let guess = Number(document.querySelector(".guess").value);
@@ -20,10 +28,10 @@ document.querySelector(".check").addEventListener("click", (e) => {
   }
 
   if (winner === guess) {
-    document.querySelector(".globalMessage").textContent = "Suuuuuuuuuu!!!!!";
+    displayGlobalMessage("Suuuuuuuuuu!!!!!");
     document.querySelector(".number").textContent = guess;
     displayMessage("Your wenning the game.");
-    document.querySelector("body").style.backgroundColor = "green";
+    changeBackGround("green");
 
     document.querySelector(".check").disabled = true;
 
@@ -37,13 +45,11 @@ document.querySelector(".check").addEventListener("click", (e) => {
   if (winner !== guess) {
     if (score > 1) {
       score--;
-      document.querySelector(".message").textContent =
-        winner > guess ? "go up." : "go down.";
+      displayMessage(winner > guess ? "go up." : "go down.");
       document.querySelector(".score").textContent = score;
     } else {
-      document.querySelector("body").style.backgroundColor = "red";
-      document.querySelector(".globalMessage").textContent =
-        "!!!!!!lllLoooooossser!!!!!!";
+      changeBackGround("red");
+      displayGlobalMessage("!!!!!!lllLoooooossser!!!!!!");
       displayMessage("You Lost The Game");
       document.querySelector(".check").disabled = true;
     }
@@ -53,9 +59,9 @@ document.querySelector(".check").addEventListener("click", (e) => {
 document.querySelector(".again").addEventListener("click", (e) => {
   e.preventDefault();
   score = 20;
-  winner = Math.trunc(Math.random() * 20 + 1);
-  document.querySelector("body").style.backgroundColor = "#222";
-  document.querySelector(".globalMessage").textContent = "Guess My Number!";
+  winner = randomNumber();
+  changeBackGround("#222");
+  displayGlobalMessage("Guess My Number!");
   document.querySelector(".number").textContent = "?";
   document.querySelector(".guess").value = "";
   displayMessage("Start guessing...");
