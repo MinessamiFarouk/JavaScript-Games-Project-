@@ -1,2 +1,3 @@
 # JavaScript-Games-Project-
-this folder will talk about all projects & games build in javascript
+
+this folder will containe all projects & games that well buildup with javascript
